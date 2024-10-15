@@ -1,0 +1,36 @@
+{% extends 'User/index.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+    <h3 style="text-align: center ;text-transform:uppercase">VIEW PROFILE</h3>
+<form id="form1" name="form1" method="post" action="">
+  <table width="200" border="1" class="table table-bordered">
+       <tr>
+
+      <td colspan="2"> <center><img src="{{ i.photo }}" width="100px" height="100px" class="rounded-circle"><br></center></td>
+
+
+
+    </tr>
+    <tr>
+
+      <th scope="col">Name</th> <td>{{ i.name }}</td></tr>
+     <tr> <th scope="col">Address</th>  <td> {{ i.place }}<br>{{ i.post }}<br>{{ i.pin }}</td></tr>
+    <tr>  <th scope="col">Email</th><td>&nbsp;{{ i.email }}</td> </tr>
+    <tr>  <th scope="col">Contact</th>
+       <td>&nbsp;{{ i.contact }}</td>
+    </tr>
+
+
+
+  </table>
+</form>
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'policestation/index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+    <script type="text/javascript">
+
+    function PreviewImage() {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("fileField2").files[0]);
+
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("s").src = oFREvent.target.result;
+        };
+    };
+
+</script>
+</head>
+
+<body>
+<h3 style="text-align: center;text-transform:uppercase">Update Criminal</h3>
+<form action="/update_criminal_post/{{ data.id }}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table width="200" border="1" class="table table-bordered" style="border-color: #84c459">
+    <tr>
+      <th scope="row">Name</th>
+      <td>
+      <input type="text" name="textfield" id="textfield" value="{{ data.name }}" class="form-control" required /></td>
+    </tr>
+    <tr>
+      <th scope="row">Gender</th>
+      <td><input type="radio" name="RadioGroup1" value="male" id="RadioGroup1_0"
+                 {% if data.gender == 'female' %} checked {% endif %}/>Male
+          <input type="radio" name="RadioGroup1" value="female" id="RadioGroup1_1"
+                {% if data.gender == 'male' %} checked {% endif %}/>Female
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">Age</th>
+      <td>
+      <input type="number" name="textfield2" id="textfield2" value="{{ data.age }}" class="form-control" required min="10" /></td>
+    </tr>
+    <tr>
+      <th scope="row">Place</th>
+      <td>
+      <input type="text" name="textfield3" id="textfield3" value="{{ data.place }}"class="form-control" required /></td>
+    </tr>
+    <tr>
+      <th scope="row">Post</th>
+      <td>
+      <input type="text" name="textfield4" id="textfield4" value="{{ data.post }}" class="form-control" required /></td>
+    </tr>
+    <tr>
+      <th scope="row">Pin</th>
+      <td>
+      <input type="tel" name="textfield5" id="textfield5" value="{{ data.pin }}" pattern="[6][0-9]{5}" class="form-control" required /></td>
+    </tr>
+    <tr>
+      <th scope="row">Contact</th>
+      <td>
+      <input type="tel" name="textfield6" id="textfield6" value="{{ data.contact }}" pattern="[0-9]{10}" class="form-control" required /></td>
+    </tr>
+    <tr>
+      <th scope="row">Photo</th>
+      <td>
+      <input type="file" name="fileField2" id="fileField2" class="form-control" onchange="PreviewImage();" /><img id="s" src="{{ data.photo }}" width="100px" height="100px" alt=""/></td>
+    </tr>
+    <tr>
+        <th colspan="2" scope="row"><div align="center"><input type="submit" name="button" id="button" value="Update" class="btn btn-success" /></div></th>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
+
+
+{% endblock %}

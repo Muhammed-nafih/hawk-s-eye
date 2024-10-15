@@ -1,0 +1,67 @@
+{% extends 'policestation/index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<h3 style="text-align: center;text-transform:uppercase">ADD/VIEW Crime History</h3>
+<form action="/add_crimehistory_post/{{ id }}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+ {% csrf_token %}
+  <table width="200" border="1" align="center" class="table table-bordered" style="border-color: #84c459">
+          <tr  align="center">
+      <th scope="row">Category</th>
+      <td>
+        <select name="select" id="select" class="form-select">
+            {% for i in d %}
+                <option value="{{ i.id }}">{{ i.category_name }} </option>
+            {% endfor %}
+      </select></td>
+    </tr>
+    <tr align="center">
+      <th scope="row">Date</th>
+      <td>
+      <input type="date" name="textfield" id="textfield" class="form-control" required max="{{ rdate }}" /></td>
+    </tr>
+    <tr align="center">
+      <th scope="row">Details</th>
+      <td>
+          <textarea name="textfield2" id="textfield2" class="form-control" required></textarea></td>
+    </tr>
+    <tr>
+        <th colspan="2" scope="row"><div align="center"><input type="submit" name="button" id="button" value="Add" class="btn btn-primary" /></div></th>
+    </tr>
+  </table>
+{% if data %}
+
+  <table width="200" border="1" class="table table-bordered">
+    <tr style="color: black;background:#84c459">
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+      <th scope="col">Category</th>
+      <th scope="col">History</th>
+      <th scope="col"></th>
+
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td> {{ i.date }}</td>
+      <td> {{ i.CATEGORY.category_name }}</td>
+        <td>&nbsp;{{ i.history }}</td>
+      <td>&nbsp;<a href="/delete_history/{{ i.id }}" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</a></td>
+
+
+    </tr>
+      {% endfor %}
+  </table>
+{% endif %}
+</form>
+</body>
+</html>
+
+{% endblock %}

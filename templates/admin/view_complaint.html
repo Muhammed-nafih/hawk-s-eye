@@ -1,0 +1,56 @@
+{% extends 'admin/index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<h3 style="text-align: center ;text-transform:uppercase">COMPLAINTS</h3>
+<form id="form1" name="form1" method="post" action="/view_complaint_post#kk">
+  <table width="200" border="1" class="table table-bordered">
+      <tr>
+          <th>Choose Date</th>
+          <th><input type="date" name="dt" class="form-control" max="{{ dat }}"/></th>
+          <th><input type="submit" name="sam" value="SEARCH" class="btn btn-dark"/></th>
+      </tr>
+  </table>
+  <table width="200" border="1" class="table table-bordered">
+    <tr style="color: black;background:#84c459">
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">contact</th>
+      <th scope="col">Email</th>
+      <th scope="col">Complaint</th>
+      <th scope="col">Date</th>
+      <th scope="col">Reply</th>
+      <th scope="col">Reply date</th>
+
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td> <center><img src="{{ i.USER.photo }}" width="100px" height="100px" class="rounded-circle"><br>{{ i.USER.name }}</center></td>
+      <td> {{ i.USER.place }}<br>{{ i.USER.post }}<br>{{ i.USER.pin }}</td>
+      <td>&nbsp;{{ i.USER.contact }}</td>
+      <td>&nbsp;{{ i.USER.email }}</td>
+      <td>&nbsp; {{ i.complaint }}</td>
+      <td>&nbsp; {{ i.cdate }}</td>
+        {% if i.reply == 'pending' %}
+            <td><form id="form1" name="form1" method="post" action="/view_complaint_post1#kk"><input type="hidden" name="cid" value="{{ i.id }}"/><textarea rows="" cols="" class="form-control" name="t" required ></textarea><input type="submit" name="sam" value="SEND REPLY" class="btn btn-warning"/></form></td>
+        {% else %}
+      <td>&nbsp; {{ i.reply }}</td>
+      <td>&nbsp; {{ i.rdate }}</td>
+    {% endif %}
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+</body>
+</html>
+
+{% endblock %}

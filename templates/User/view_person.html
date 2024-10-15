@@ -1,0 +1,38 @@
+{% extends 'User/index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<h3 style="text-align: center ;text-transform:uppercase">view person list</h3>
+<form id="form1" name="form1" method="post" action="">
+  <table width="200" border="1" class="table table-bordered">
+    <tr style="color: black;background:#84c459">
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Place</th>
+      <th scope="col">Contact</th>
+        <th></th>
+        <th></th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>&nbsp;<center><img src="{{ i.F_image }}" alt="" width="100" height="100" class="rounded-circle"/><br>{{ i.F_name }}</center></td>
+      <td>&nbsp;{{ i.F_place }}</td>
+      <td>&nbsp;{{ i.F_contact }}</td>
+     <td><a href="/user_update_familiar_persons/{{ i.id }}#kk" class="btn btn-success">Update</a></td>
+      <td><a href="/user_delete_familiar_person/{{ i.id }}" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</a></td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+</body>
+</html>
+
+{% endblock %}
