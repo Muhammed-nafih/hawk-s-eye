@@ -34,13 +34,11 @@ pydot==1.4.2
 pyOpenSSL==20.0.1
 pyparsing==3.2.3
 PyPDF2==1.26.0
-pypiwin32==223
 pyserial==3.5
 python-dateutil==2.8.1
 python-stdnum==1.16
 pytz==2025.2
 pyusb==1.0.2
-pywin32==310
 qrcode==6.1
 reportlab==3.5.59
 requests==2.25.1
