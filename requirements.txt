@@ -57,3 +57,5 @@ zeep==4.0.0
 Django==4.2.5
 gunicorn
 Pillow
+mysqlclient
+
