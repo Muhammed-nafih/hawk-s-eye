@@ -2,6 +2,9 @@ services:
   - type: web
     name: django-web
     env: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: |
+  pip install -r requirements.txt
+  python manage.py collectstatic --noinput
+
     startCommand: gunicorn Thief_Detection.wsgi:application
     autoDeploy: true
